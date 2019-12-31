@@ -1,0 +1,153 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <form class="post_product md-form col-md-4 offset-md-4" action="/sellers/products/post" method="POST"
+                enctype="multipart/form-data">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Đăng sản phẩm đấu giá</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Tên sản phẩm:<span style="color: red;">(*)</span></label>
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                        </div>
+                        <!-- /.form group -->
+
+                        <div class="form-group">
+                            <label for="category">Loại sản phẩm: <span style="color: red;">(*)</span></label>
+                            <select class="form-control" name="category" id="category">
+                                <%for(category of categories){%>
+                                <option value="<%= category._id%>"><%=
+                                            category.name%></option>
+
+
+                                <% } %>
+
+                            </select>
+
+                            <!-- /.input group -->
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ảnh sản phẩm:<span style="color:red;">(Tối thiểu 3 ảnh)</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="file-field">
+
+                                        <div class="btn btn-primary
+                                                        btn-sm float-left">
+                                            <input type="file" name="main_img" class="form-control" value="choose"
+                                                accept="image/*">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="file-field">
+                                        <div class="btn btn-primary
+                                                        btn-sm float-left">
+                                            <input type="file" multiple class="form-control" value="choose"
+                                                name="files" accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- phone mask -->
+                            <div class="form-group">
+                                <label>Giá khởi điểm:<span style="color: red;">(*)</span></label>
+                                <div class="input-group">
+
+                                    <input pattern="[1-9][0-9]*" name="price_start" type="number" class="form-control">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+
+                            <!-- phone mask -->
+                            <div class="form-group">
+                                <label>Bước giá:<span style="color:
+                                                    red;">(*)</span></label>
+                                <div class="input-group">
+
+                                    <input name="price_step" pattern="[1-9][0-9]*" type="number" class="form-control">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+
+                            <div class="form-group">
+                                <label>Giá mua ngay: </label>
+                                <div class="input-group">
+                                    <input name="price_now" type="number" class="form-control">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                            <div class="form-group">
+                                <label>Gia hạn tự động: </label>
+                                <div class="input-group row">
+                                    <div class="col-md-6">
+                                        <input type="radio" name="auto_add" value="true"> <span>Có</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="radio" name="auto_add" value="false"><span>Không</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả:</label>
+                            <textarea id="editor1" name="editor1" cols="80" rows="10">
+
+                                        </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Hoàn thành đăng bài: </label>
+                            <div class="input-group">
+                                <input type="submit" value="Đăng sản phẩm" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+
+                <!-- /.card -->
+
+
+
+
+            </form>
+        </div>
+
+</section>
+
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/ckeditor/ckeditor.js"></script>
+<script>
+
+    // Replace the <textarea id="editor1"> with an CKEditor
+    // instance, using default configurations.
+    CKEDITOR.replace('editor1', {
+        uiColor: '#14B8C4',
+        toolbar: null,
+        toolbarGroups: [
+            { name: 'document', groups: ['mode', 'document'] },			// Displays document group with its two subgroups.
+            { name: 'clipboard', groups: ['clipboard', 'undo'] },			// Group's name will be used to create voice label.
+            '/',																// Line break - next group will be placed in new line.
+            { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+            { name: 'links' }
+        ]
+    });
+
+</script>

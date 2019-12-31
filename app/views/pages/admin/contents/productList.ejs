@@ -1,0 +1,95 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">Danh sách sản phẩm</h3>
+
+                    <form class="form-inline col-md-3 offset-6" id="form" action="#" method="get">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar search" type="search" placeholder="Nhập mã sản phẩm"
+                                aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar"  type="button" >
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+
+                    <table id="example2" class="table table-bordered
+                        table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên</th>
+                                <th>Loại</th>
+                                <th>Giá bắt đầu</th>
+                                <th>Ngày tạo</th>
+                                <th>Người bán</th>
+                                <th>Tình trạng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(product of products){ %>
+                            <tr>
+                                <td><%= product._id%></td>
+                                <td><%= product.name%></td>
+                                <td><%= product.category.name%>
+                                </td>
+                                <td><%= product.priceStart%></td>
+                                <td> <%= product.createdAt%></td>
+                                <td>
+                                    <%= product.seller.lastName%>
+                                </td>
+                                <td>
+                                    <% let status = "Đã xóa";
+                                    if(!product.isActive){
+                                        status = "Đang hoạt động";
+                                    } %>
+                                    <%=status %>
+                                </td>
+                                <td>
+                                    <form action="/admin/products/<%= product._id %>/delete" method="POST">
+                                        <button class="delete">
+                                            <i class="fas fa-trash">
+
+                                            </i>
+                                        </button>
+                                        <!-- |
+                                            <a href="#" class="detail" class="ml-4" data-id="<%= product._id %>">
+                                                Chi tiết
+                                            </a>
+                                        
+                                             -->
+                                        
+                                            
+                                               
+                                           
+                                        
+                                        
+                                    </form>
+
+
+                                </td>
+                            </tr>
+                            <%} %>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

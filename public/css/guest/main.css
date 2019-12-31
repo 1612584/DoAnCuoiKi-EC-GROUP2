@@ -1,0 +1,41 @@
+.card-product__imgOverlayNew {
+	background: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    padding: 30px 5px;
+}
+
+.card-product__imgOverlayNew li {
+	display: inline-block
+}
+
+.card-product__imgOverlayNew li button {
+	border: 0;
+	border-radius: 0;
+	padding: 7px 12px;
+	background: #db2d2d
+}
+
+.card-product__imgOverlayNew li button i,
+.card-product__imgOverlayNew li button span {
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	vertical-align: middle
+}
+
+.card-product__imgOverlayNew li button:hover {
+	background: #fa0000
+}
+
+.card-product__imgOverlayNew li:not(:last-child) {
+	margin-right: 5px
+}
+
+.unstyled-button {
+	border: none;
+	padding: 0;
+	background: none;
+  }

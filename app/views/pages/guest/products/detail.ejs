@@ -1,0 +1,370 @@
+<% var rootPath = '../../../'; %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body">
+    <%- include(rootPath + 'elements/guest/navbar.ejs')%>
+
+    <!-- Begin Main -->
+    <main class="site-main">
+        <!--================Single Product Area =================-->
+        <div class="product_image_area">
+            <div class="container">
+                <div class="row s_product_inner">
+                    <div class="col-lg-6">
+                        <div class="owl-carousel owl-theme s_Product_carousel">
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="/img/category/s-p1.jpg" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="/img/category/s-p1.jpg" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="/img/category/s-p1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="s_product_text">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h3>Faded SkyBlu Denim Jeans</h3>
+                                    <span>Giá hiện tại</span>
+                                    <h2>$149.99</h2>
+                                    <span>Giá mua ngay</span>
+                                    <h2 class="text-warning">$149.99</h2>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Giá gốc</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <b>$199.99</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Giá khởi điểm</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <b>$19.99</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Bước giá</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <b>$9.99</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="text-center col-12">
+                                            <span>Current Winner</span>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center h-100">
+                                        <div class="text-center col-12">
+                                            <span class="text-warning"><i class="fas fa-crown fa-2x"></i></span>
+                                            <h4>Huy</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span>Thời gian còn lại</span>
+                            <h3 class="text-danger">00:01:59</h3>
+                            <p class="text-center row">
+                                <button class="btn btn-primary col-1 ml-3 mr-1" type="button"><i
+                                        class="fas fa-chevron-left"></i></i></button>
+                                <input type="text" class="form-control col-4" value="$199.99">
+                                <button class="btn btn-primary col-1 ml-1" type="button"><i
+                                        class="fas fa-chevron-right"></i></button>
+                                <a id='swapHeart' class="btn btn-default unstyled-button ml-4 mt-2">
+                                    <i class="far fa-heart text-danger fa-lg"></i>
+                                </a>
+                            </p>
+                            <div class="product_count">
+                                <a class="button primary-btn" href="#"><i class="fas fa-gavel"></i> Đấu giá ngay</a>
+                                <a class="button primary-btn"
+                                    style="background-color: yellow; border-color: black; color: black;" href="#"><i
+                                        class="fas fa-money-bill-wave"></i> Mua ngay</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--================End Single Product Area =================-->
+
+        <!--================Seller Infomation Area =================-->
+        <div class="container mt-4">
+            <h4>Người bán</span></h2>
+            <div class="row">
+                <div class="thumb col-1">
+                    <img src="/img/blog/c1.jpg" alt="">
+                </div>
+                <div class="col-3">
+                    <div class="desc">
+                        <h5>
+                            <a href="#">Shop Đồng Hồ</a>
+                        </h5>
+                        <button class="btn-outline-dark">Xem thông tin</button>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="desc">
+                        <p>Điểm đánh giá: 100</p>
+                        <p class="date">Ngày tham gia: December 4, 2017 at 3:12 pm </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--================Seller Infomation Area =================-->
+
+
+        <!--================Product Description Area =================-->
+        <section class="product_description_area">
+            <div class="container">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                            aria-selected="true">Mô tả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Danh sách đấu giá</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature
+                            women of all shapes
+                            and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left
+                            Kendrick School in
+                            Reading at the age of 15, where she went to secretarial school and then into an insurance
+                            office. After moving to
+                            London and then Hampton, she eventually married her next door neighbour from Reading, John
+                            Cook. He was an
+                            officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year
+                            before John took a
+                            job in Southern Rhodesia with a motor company. Beryl bought their young son a box of
+                            watercolours, and when
+                            showing him how to use it, she decided that she herself quite enjoyed painting. John
+                            subsequently bought her a
+                            child’s painting set for her birthday and it was with this that she produced her first
+                            significant work, a
+                            half-length portrait of a dark-skinned lady with a vacant expression and large drooping
+                            breasts. It was aptly
+                            named ‘Hangover’ by Beryl’s husband and</p>
+                        <p>It is often frustrating to attempt to plan meals that are designed for one. Despite this
+                            fact, we are seeing
+                            more and more recipe books and Internet websites that are dedicated to the act of cooking
+                            for one. Divorce and
+                            the death of spouses or grown children leaving for college are all reasons that someone
+                            accustomed to cooking for
+                            more than one would suddenly need to learn how to adjust all the cooking practices utilized
+                            before into a
+                            streamlined plan of cooking that is more efficient for one person creating less</p>
+                    </div>
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h5>Huy <i class="fas fa-crown fa-lg text-warning"></i></h5>
+                                        </td>
+                                        <td>
+                                            <h5>$199.99</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h5>Hoàng</h5>
+                                        </td>
+                                        <td>
+                                            <h5>$100.99</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h5>Chí</h5>
+                                        </td>
+                                        <td>
+                                            <h5>$90.99</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h5>Tâm</h5>
+                                        </td>
+                                        <td>
+                                            <h5>$80.99</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h5>Tú</h5>
+                                        </td>
+                                        <td>
+                                            <h5>$70.99</h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  
+                  
+                </div>
+            </div>
+        </section>
+        <!--================End Product Description Area =================-->
+
+        <!--================ Start related Product area =================-->
+        <section class="related-product-area section-margin--small mt-0">
+            <div class="container">
+                <div class="section-intro pb-60px">
+                    <p>Popular Item in the market</p>
+                    <h2>Top <span class="section-intro__style">Product</span></h2>
+                </div>
+                <div class="row mt-30">
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                        <div class="single-search-product-wrapper">
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-1.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-2.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-3.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                        <div class="single-search-product-wrapper">
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-4.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-5.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-6.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                        <div class="single-search-product-wrapper">
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-7.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-8.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-9.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                        <div class="single-search-product-wrapper">
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-1.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-2.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                            <div class="single-search-product d-flex">
+                                <a href="#"><img src="/img/product/product-sm-3.png" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">Gray Coffee Cup</a>
+                                    <div class="price">$170.00</div>
+                                    <div class="date text-danger">01:30:29</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================ end related Product area =================-->
+
+    </main>
+
+    <!-- End Main -->
+
+    <%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+    <%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+
+    <script src="/js/guest/detail.js"></script>
+
+</body>
+
+</html>

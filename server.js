@@ -1,43 +1,63 @@
-const express = require('express');
-//import express from 'express';
-const app = express();
-// var models = require('./models');
-//
-var path = require('path')
-var serveStatic = require('serve-static')
+const express = require('express')
+const app = express()
+const path = require('path');
+const mongoose = require('mongoose')
+const passport = require('passport')
+const session = require('express-session')
+const flash = require('connect-flash');
+var logger = require('morgan');
+var cookieParser = require("cookie-parser");
 
-const Sequelize = require('sequelize');
+// Config passport
+require("./app/configs/passport")(passport);
 
-//var bookRouter = require('./routes/books')
-var hbs = require('express-handlebars');
+// Router
+const userRouter = require('./app/routes/user')
+const sellerRouter = require("./app/routes/seller/index");
+const adminRouter = require("./app/routes/admin/index");
+const bidderRouter = require("./app/routes/bidder");
+const guestRouter = require('./app/routes/guest');
 
-//define engine name hbs, use hbs to create handlebars
-app.set('view engine', 'hbs');
+// use morgan
+app.use(logger("dev"));
+// config dotenv
+require("dotenv").config();
+// view engine setup
+app.set("views", path.join(__dirname, "/app/views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.static(__dirname + '/public'));
+// Config req.body
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
-app.engine('hbs', hbs({
-    extname: 'hbs',
-    defaultLayout: 'layout',
-    layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
-}));
+app.use(cookieParser());
 
+// express sesson
+app.use(
+  session({ secret: "doancuoiky", resave: true, saveUninitialized: true })
+);
 
-app.get('', (req, res) => {
-    res.render('home');
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+// connect flash
+app.use(flash());
+
+// connect mongodb
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true, 
+  useCreateIndex: true
 });
-//use following line to explicit layout you want to use
-app.get('/manage', (req, res) => {
-    res.render('home', { layout: 'manageLayout' }); //explicit 'manageLayout.hbs' instead of default layout 'layout.hbs'
-});
+mongoose.set('useFindAndModify', false);
+// route
+app.use('/user', userRouter)
+app.use('/sellers',sellerRouter);
+app.use('/admin', adminRouter);
+app.use('/bidder', bidderRouter);
+app.use('/', guestRouter);
 
-
-
-
-
-// var userRouter = require('./routes/users');
-// app.use('/users', userRouter);
-app.listen(process.env.PORT || 8083, function() {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.listen(process.env.PORT, () => { 
+    console.log(`Example app listening on port ${process.env.PORT}!`)
+})
