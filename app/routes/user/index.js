@@ -14,6 +14,6 @@ router.get('/profile', userController.getProfile);
 router.post('/api/change_name', userController.changeName);
 router.post('/api/change_email', userController.changeEmail);
 
-router.use('/login_fb', loginFbRouter);
+// router.use('/login_fb', loginFbRouter);
 
 module.exports = router; 

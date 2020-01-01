@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
+// const FacebookStrategy = require('passport-facebook').Strategy
 const { User } = require('../models/user')
 const { Bidder } = require('../models/bidder')
 const bcrypt = require('bcryptjs')
@@ -36,30 +36,30 @@ module.exports = function(passport) {
         
     ))
 
-    passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
-        },
-        function(accessToken, refreshToken, profile, done) {
-            User.findOne({userFbId: profile.id}, function(err, user) {
-                if(err) return done(err)
-                if(user) return done(null, user)
-                const userFb = new User({
-                    // tạo user lưu vào db 
-                    userFbId: profile.id,
-                    fullName: profile.displayName,
-                    emailVerified: true
-                })
+    // passport.use(new FacebookStrategy({
+    //     clientID: process.env.FACEBOOK_CLIENT_ID,
+    //     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    //     callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    //     },
+    //     function(accessToken, refreshToken, profile, done) {
+    //         User.findOne({userFbId: profile.id}, function(err, user) {
+    //             if(err) return done(err)
+    //             if(user) return done(null, user)
+    //             const userFb = new User({
+    //                 // tạo user lưu vào db 
+    //                 userFbId: profile.id,
+    //                 fullName: profile.displayName,
+    //                 emailVerified: true
+    //             })
                 
-                userFb.save((err, user) => {
-                    const bidder = new Bidder({ user: user._id})
-                    bidder.save();
-                    return done(null, userFb)
-                })
-            })
-        }
-    ))
+    //             userFb.save((err, user) => {
+    //                 const bidder = new Bidder({ user: user._id})
+    //                 bidder.save();
+    //                 return done(null, userFb)
+    //             })
+    //         })
+    //     }
+    // ))
 
 
     passport.serializeUser(function(user, done) {
