@@ -5,16 +5,14 @@
 <html lang="en">
 <%- include(rootPath + 'elements/guest/header.ejs')%>
 
-<body>
+<body">
     <%- include(rootPath + 'elements/guest/navbar.ejs')%>
-    <script>var isAuthenticated=<%if (locals.isAuthenticated == undefined) {%>undefined<%} else  {%><%=true%><%}%>; </script>
-    
     <% 
-    let { 
+    const { 
         name, images, priceCurrent, priceNow, priceStart, priceStep, seller, fullDes, bidders 
     } = product;
-    bidders = bidders.reverse();
-    let bidderWinCurr = bidders[0] || {bidder: {user: {fullName: 'Chưa có'}}}
+    const bidderWinCurr = bidders[bidders.length -1]
+    
     %>
     <div class="container my-3">
         <div class="alert alert-success hidden" role="alert">
@@ -45,6 +43,7 @@
                                     <img class="img-fluid" src="<%= item %>" alt="">
                                 </div>
                             <%})%>
+                            
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
@@ -90,64 +89,12 @@
                             </div>
                             <span>Thời gian còn lại</span>
                             <h3 class="text-danger">00:01:59</h3>
-                            <script>
-                                // Bước giá
-                                var priceDiff = 100;
-                            </script>
-                            <p class="text-center row">
-                                <button class="price_previous btn btn-primary col-1 ml-3 mr-1" type="button">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-
-                                <input id="bidPrice" type="text" class="price_input form-control col-4" value="<%= priceCurrent %> vnđ" />
-
-                                <button class="price_next btn btn-primary col-1 ml-1" type="button">
-                                    <i class="fas fa-chevron-right"></i></button>
-                                <a id='swapHeart' class="btn btn-default unstyled-button ml-4 mt-2 add_favorite">
-                                    <i class="far fa-heart text-danger fa-lg"></i>
-                                </a>
-                            </p>
-                            <div class="product_count">
-                                <a class="button primary-btn bid_btn" href="javascript:void(0)">
-                                    <i class="fas fa-gavel"></i> Đấu giá ngay
-                                </a>
-                                <a class="button primary-btn"
-                                    style="background-color: yellow; border-color: black; color: black;" href="#"><i
-                                        class="fas fa-money-bill-wave"></i> Mua ngay</a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--================End Single Product Area =================-->
-
-        <!--================Seller Infomation Area =================-->
-        <div class="container mt-4">
-            <h4>Người bán</span></h2>
-            <div class="row">
-                <div class="thumb col-1">
-                    <img src="/img/blog/c1.jpg" alt="">
-                </div>
-                <div class="col-3">
-                    <div class="desc">
-                        <h5>
-                            <a href="#"><%= seller.fullName %></a>
-                        </h5>
-                        <button class="btn-outline-dark">Xem thông tin</button>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="desc">
-                        <p>Điểm đánh giá: 100</p>
-                        <p class="date">Ngày tham gia: December 4, 2017 at 3:12 pm </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--================Seller Infomation Area =================-->
 
 
         <!--================Product Description Area =================-->
@@ -171,32 +118,31 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    
+                                    <%let size = bidders.length%>
                                     
                                     <% bidders.forEach((bidder, index) => {%>
-                                        
-                                        <%if(index == 0) {%>
+                                        <%if(index == size -1) {%>
                                             <tr>
                                                 <td>
-                                                    <h5><%= moment(bidder.date).format("h:mm a, dddd, Do MMMM YYYY") %></h5>
-                                                </td>
-                                                <td>
-                                                    <h5><%= bidder.bidder.user.fullName.replace(/.{4}/, '****') %> <i class="fas fa-crown fa-lg text-warning"></i></h5>
+                                                    <h5><%= bidder.bidder.user.fullName%> <i class="fas fa-crown fa-lg text-warning"></i></h5>
                                                 </td>
                                                 <td>
                                                     <h5><%= bidder.price%> vnđ</h5>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-sm">Từ chối</a>
                                                 </td>
                                             </tr>
                                         <%} else {%>
                                             <tr>
                                                 <td>
-                                                    <h5><%= moment(bidder.date).format("h:mm a, dddd, Do MMMM YYYY") %></h5>
-                                                </td>
-                                                <td>
-                                                    <h5><%= bidder.bidder.user.fullName.replace(/.{4}/, '****') %></h5>
+                                                    <h5><%= bidder.bidder.user.fullName%></h5>
                                                 </td>
                                                 <td>
                                                     <h5><%= bidder.price%> vnđ</h5>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-sm">Từ chối</a>
                                                 </td>
                                             </tr>
                                         <%}%>
@@ -339,6 +285,7 @@
             </div>
         </section>
         <!--================ end related Product area =================-->
+
     </main>
 
     <!-- End Main -->

@@ -1,0 +1,95 @@
+<% var rootPath = '../../../'; %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body>
+	<%- include(rootPath + 'elements/guest/navbar.ejs')%>
+
+
+	<main class="site-main">
+		<%- include(rootPath + 'elements/guest/alert.ejs')%>
+		<div class="container ">
+			<div class="alert alert-success my-3 hidden" role="alert">
+
+			</div>
+		</div>
+		<div class="container ">
+			<div class="alert alert-danger my-3 hidden" role="alert">
+
+			</div>
+		</div>
+		<!--================Login Box Area =================-->
+		<section class="login_box_area section-margin">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="login_box_img">
+							<div class="hover">
+								<h4>Bạn đã có tài khoản chưa?</h4>
+								<p>Đây là trang web được phát triển để phục vụ cho môn học Phát triển ứng dụng web</p>
+								<a class="button button-account" href="/login">Đăng nhập ngay</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="login_form_inner register_form_inner">
+							<h3>Đăng kí tài khoản</h3>
+							<form class="row login_form" action="/register" method="post" id="register_form">
+								<div class="col-md-12 form-group">
+									<input type="text" class="form-control" id="name" name="fullName"
+										placeholder="Họ tên" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Họ tên'">
+								</div>
+								<div class="col-md-12 form-group">
+									<input required type="text" class="form-control" id="username" name="userName"
+										placeholder="Username" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Username'">
+								</div>
+								<div class="col-md-12 form-group">
+									<input required type="text" class="form-control" id="email" name="email"
+										placeholder="Email Address" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Email Address'">
+								</div>
+								<div class="col-md-12 form-group">
+									<input required type="password" class="form-control" id="password" name="password"
+										placeholder="Password" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Password'">
+								</div>
+								
+
+								<!-- Chưa làm chức năng này -->
+
+								<!-- <div class="col-md-12 form-group">
+								<div class="creat_account">
+									<input type="checkbox" id="f-option2" name="selector">
+									<label for="f-option2">Keep me logged in</label>
+								</div>
+							</div> -->
+								<div class="col-md-12 form-group">
+									<button type="submit" value="submit"
+										class="button button-register w-100">Đăng kí</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================End Login Box Area =================-->
+
+	</main>
+
+	<%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+	<%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+	<script src="/js/guest/index.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js?render=6LdtV8oUAAAAAIP7pIRaNBnWcId-gb1ps-150XdD"></script>
+	<script src="/js/register.js"></script>
+
+</body>
+
+</html>
+

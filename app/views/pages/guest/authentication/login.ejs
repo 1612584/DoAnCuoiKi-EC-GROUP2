@@ -1,0 +1,73 @@
+<% var rootPath = '../../../'; %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body>
+    <%- include(rootPath + 'elements/guest/navbar.ejs')%>
+
+
+    <main class="site-main">
+		<%- include(rootPath + 'elements/guest/alert.ejs')%>
+
+		<!--================Login Box Area =================-->
+		  <section class="login_box_area section-margin">
+			  <div class="container">
+				  <div class="row">
+					  <div class="col-lg-6">
+						  <div class="login_box_img">
+							  <div class="hover">
+								  <h4>Bạn chưa có tài khoản?</h4>
+								  <p>Đây là trang web được phát triển để phục vụ cho môn học Phát triển ứng dụng web</p>
+								  <a class="button button-account" href="/register">Tạo một tài khoản</a>
+							  </div>
+						  </div>
+					  </div>
+					  <div class="col-lg-6">
+						  <div class="login_form_inner">
+							  <h3>Đăng nhập vào trang web</h3>
+							  <form class="row login_form" action="/login" id="contactForm" method="post">
+								  <div class="col-md-12 form-group">
+									  <input required type="text" class="form-control" id="name" name="userName" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								  </div>
+								  <div class="col-md-12 form-group">
+									  <input required type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								  </div>
+								  <!-- Chưa phát triển chức năng này -->
+	  
+								  <!-- <div class="col-md-12 form-group">
+									  <div class="creat_account">
+										  <input type="checkbox" id="f-option2" name="selector">
+										  <label for="f-option2">Keep me logged in</label>
+									  </div>
+								  </div> -->
+								  <div class="col-md-12 form-group">
+									  <button type="submit" value="submit" class="button button-login w-100">Đăng nhập</button>
+									  <a href="/user/login_fb/auth/facebook" 
+										style="float: right; 
+											color: #ffffff; 
+											background: #384AEB;" class="btn btn-info">
+											<i class="fab fa-facebook-f mr-3"></i>Đăng nhập với Facebook</a>
+									  <a href="/user/forgot">Quên mật khẩu?</a>
+								  </div>
+							  </form>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+		  </section>
+		  <!--================End Login Box Area =================--> 
+
+    </main>
+
+    <%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+    <%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+    <script src="/js/guest/index.js"></script>
+
+
+</body>
+
+</html>

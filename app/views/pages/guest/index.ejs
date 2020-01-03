@@ -1,6 +1,5 @@
 <% var rootPath = '../../'; %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <%- include(rootPath + 'elements/guest/header.ejs')%>
@@ -40,146 +39,41 @@
                     <h2>Đấu Giá <span class="section-intro__style">Sắp Kết Thúc</span></h2>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 col-xl-3">
+                    <% HottestProduct.forEach(product => {%>
+                        <%
+                            let biddersSize = product.bidders.length;
+                            let bidderMax = product.bidders[biddersSize - 1];
+                            let nameBidderMax
+                            if(!bidderMax) {
+                                nameBidderMax = 'Chưa có'
+                            }
+                            else {
+                                nameBidderMax = bidderMax.bidder.user.fullName.replace(/^.{4}/, '****')
+                                
+                            }
+                            let fromNow = moment(Date.now()).to(product.timeEnd)
+                        %>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="card text-center card-product">
                             <div class="card-product__img">
-                                <img class="card-img" src="img/product/product1.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
+                                <img class="card-img" src="<%=product.images.main%>" alt="">
                             </div>
                             <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                                <p class="card-product__price">Giá gốc: $150.00</p>
-                                <p class="card-product__price text-danger">Giá hiện tại: $100.00</p>
+                                <h4 class="card-product__title product__textoverflow"><a href="/products/detail/<%=product._id%>"><%=product.name%></a></h4>
+                                <p class="card-product__price text-danger">Giá hiện tại: <%=product.priceCurrent%> vnđ</p>
+                                <p><i class="fas fa-crown mr-2 text-warning"></i><%= nameBidderMax %></p>
+                                <p><i class="far fa-clock mr-1"></i><%= fromNow %> <i class="fas fa-angle-double-up ml-2 mr-1"></i><%= biddersSize%></p>
                             </div>
+                            
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product2.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Beauty</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product3.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Decor</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product4.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Decor</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product5.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Man Office Bag</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product6.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Kids Toy</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Charging Car</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product7.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Blutooth Speaker</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product8.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Kids Toy</p>
-                                <h4 class="card-product__title"><a href="#">Charging Car</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
+                    <%})%>
+                    
+                    
                 </div>
             </div>
         </section>
+
         <!-- ================ trending product section end ================= -->
 
         <!-- ================ Best Selling item  carousel ================= -->
@@ -190,136 +84,44 @@
                     <h2>Đấu Giá <span class="section-intro__style">Hot Nhất</span></h2>
                 </div>
                 <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product1.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Accessories</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
+                    <%HottestProduct.forEach(product => {%>
+                        <%
+                            let biddersSize = product.bidders.length;
+                            let bidderMax = product.bidders[biddersSize - 1];
+                            let nameBidderMax
+                            if(!bidderMax) {
+                                nameBidderMax = 'Chưa có'
+                            }
+                            else {
+                                nameBidderMax = bidderMax.bidder.user.fullName.replace(/^.{4}/, '****')
+                                
+                            }
+                            let fromNow = moment(Date.now()).to(product.timeEnd)
+                        %>
 
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product2.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
+                        <div class="card text-center card-product">
+                            <div class="card-product__img">
+                                <img class="card-img" src="<%=product.images.main%>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-product__title product__textoverflow"><a href="/products/detail/<%=product._id%>"><%=product.name%></a></h4>
+                                <p class="card-product__price text-danger">Giá hiện tại: <%=product.priceCurrent%> vnđ</p>
+                                <p><i class="fas fa-crown mr-2 text-warning"></i><%= nameBidderMax %></p>
+                                <p><i class="far fa-clock mr-1"></i><%= fromNow %> <i class="fas fa-angle-double-up ml-2 mr-1"></i><%= biddersSize%></p>
+                            </div>
+                            
                         </div>
-                        <div class="card-body">
-                            <p>Beauty</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
+                        
+                    <%})%>
+                    
+                    
 
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product3.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Decor</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product4.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Decor</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product1.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Accessories</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product2.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Beauty</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product3.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Decor</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center card-product">
-                        <div class="card-product__img">
-                            <img class="img-fluid" src="img/product/product4.png" alt="">
-                            <ul class="card-product__imgOverlayNew">
-                                <li><button><span>00</span></button></li>
-                                <li><button><span>01</span></button></li>
-                                <li><button><span>00</span></button></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <p>Decor</p>
-                            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                            <p class="card-product__price">$150.00</p>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </section>
+
         <!-- ================ Best Selling item  carousel end ================= -->
 
         <!-- ================ most expensive product section start ================= -->
@@ -329,143 +131,39 @@
                     <p>Siêu hot.</p>
                     <h2>Giá <span class="section-intro__style"> Cao Nhất</span></h2>
                 </div>
+
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 col-xl-3">
+                    <% MostExpensiveProduct.forEach(product => {%>
+                        <%
+                            let biddersSize = product.bidders.length;
+                            let bidderMax = product.bidders[biddersSize - 1];
+                            let nameBidderMax
+                            if(!bidderMax) {
+                                nameBidderMax = 'Chưa có'
+                            }
+                            else {
+                                nameBidderMax = bidderMax.bidder.user.fullName.replace(/^.{4}/, '****')
+                                
+                            }
+                            let fromNow = moment(Date.now()).to(product.timeEnd)
+                        %>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="card text-center card-product">
                             <div class="card-product__img">
-                                <img class="card-img" src="img/product/product1.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
+                                <img class="card-img" src="<%=product.images.main%>" alt="">
                             </div>
                             <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                                <p class="card-product__price">$150.00</p>
+                                <h4 class="card-product__title product__textoverflow"><a href="/products/detail/<%=product._id%>"><%=product.name%></a></h4>
+                                <p class="card-product__price text-danger">Giá hiện tại: <%=product.priceCurrent%> vnđ</p>
+                                <p><i class="fas fa-crown mr-2 text-warning"></i><%= nameBidderMax %></p>
+                                <p><i class="far fa-clock mr-1"></i><%= fromNow %> <i class="fas fa-angle-double-up ml-2 mr-1"></i><%= biddersSize%></p>
                             </div>
+                            
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product2.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Beauty</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product3.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Decor</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product4.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Decor</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product5.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Man Office Bag</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product6.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Kids Toy</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Charging Car</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product7.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Accessories</p>
-                                <h4 class="card-product__title"><a href="single-product.html">Blutooth Speaker</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                            <div class="card-product__img">
-                                <img class="card-img" src="img/product/product8.png" alt="">
-                                <ul class="card-product__imgOverlayNew">
-                                    <li><button><span>00</span></button></li>
-                                    <li><button><span>01</span></button></li>
-                                    <li><button><span>00</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <p>Kids Toy</p>
-                                <h4 class="card-product__title"><a href="#">Charging Car</a></h4>
-                                <p class="card-product__price">$150.00</p>
-                            </div>
-                        </div>
-                    </div>
+                    <%})%>
+                    
+                    
                 </div>
             </div>
         </section>
