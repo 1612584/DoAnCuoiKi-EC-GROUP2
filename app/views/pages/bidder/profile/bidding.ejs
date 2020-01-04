@@ -1,0 +1,117 @@
+<% var rootPath = '../../../'; %>
+<% var sidebar_active = 3; %>
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body>
+    <%- include(rootPath + 'elements/guest/navbar.ejs')%>
+    <!-- Begin Main -->
+    <main class="site-main">
+        <!--================Blog Area =================-->
+        <section class="blog_area single-post-area py-80px section-margin--small">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <%- include(rootPath + 'elements/bidder/sidebar.ejs')%>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="info-list">
+                            <h4 class="info-list-title">Đang đấu giá</h4>
+                            <!-- Search form -->
+                            <div class="mb-4 col-6 offset-7">
+                                <form class="form-inline md-form form-sm mt-0">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                                        aria-label="Search">
+                                </form>
+                            </div>
+                            
+                            <div class="comment_list">
+                                <% products.forEach(product => {%>
+                                    <div class="review_item">
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="/img/cart/cart1.png" alt="">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4><a href="#"><%= product.name %></a> </h4>
+                                                <h5 class="text-danger">Giá hiện tại: <%=product.priceCurrent%> vnđ</h5>
+                                                <a class="reply_btn" href="#">Chi tiết</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+    
+                                    </div>
+                                <%}) %>
+                                <!-- <div class="review_item">
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/img/cart/cart1.png" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4><a href="#">Blake Ruiz</a> </h4>
+                                            <h5 class="text-danger">Giá hiện tại: $1000</h5>
+                                            <h5>Giá đấu: $500</h5>
+                                            <a class="reply_btn" href="#">Chi tiết</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+
+                                </div> -->
+                                
+                            </div>
+                            <nav class="profile-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">
+                                                <span class="fas fa-chevron-left"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">01</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">02</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">03</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">04</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">09</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">
+                                                <span class="fas fa-chevron-right"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+
+    </main>
+
+    <!-- End Main -->
+
+    <%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+    <%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+    <%- include(rootPath + 'elements/bidder/sidebarActive.ejs', {sidebar_active: sidebar_active})%>
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<% var rootPath = '../../../'; %>
+<% var sidebar_active = 6; %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body>
+    <%- include(rootPath + 'elements/guest/navbar.ejs')%>
+    <div class="container my-3">
+        <div class="alert alert-success hidden" role="alert">
+            
+        </div>
+    </div>
+    <div class="container ">
+        <div class="alert alert-danger hidden" role="alert">
+            
+        </div>
+    </div>
+
+    <!-- Begin Main -->
+    <main class="site-main">
+        <!--================Blog Area =================-->
+        <section class="blog_area single-post-area py-80px section-margin--small">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <%- include(rootPath + 'elements/bidder/sidebar.ejs')%>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="info-list">
+                            <h4 class="info-list-title">Xin lên Seller</h4>
+                            <!-- Search form -->
+                            <div class="mb-4 col-6">
+                                <h4>Tình trạng: <span class="text-danger">Hết hạn</span> </h4>
+                                <h4>Hạn: <span class="text-secondary">31/12/2019</span> </h4>
+                            </div>
+
+                            <form>
+                                <div class="form-group">
+                                    <textarea class="form-control mb-10" rows="5" name="message" placeholder="Nhập lý do"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập lý do'"
+                                        required=""></textarea>
+                                </div>
+                                <a href="javascipt:void(0)" id="upgrade" class="btn button-postComment button--active">Xin làm seller</a>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+
+    </main>
+
+    <!-- End Main -->
+
+    <%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+    <%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+    <%- include(rootPath + 'elements/bidder/sidebarActive.ejs', {sidebar_active: sidebar_active})%>
+    <script src="/js/bidder/upgrade.js"></script>
+</body>
+
+</html>

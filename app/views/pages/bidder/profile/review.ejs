@@ -1,0 +1,110 @@
+<% var rootPath = '../../../'; %>
+<% var sidebar_active = 5; %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include(rootPath + 'elements/guest/header.ejs')%>
+
+<body>
+    <%- include(rootPath + 'elements/guest/navbar.ejs')%>
+
+    <!-- Begin Main -->
+    <main class="site-main">
+        <!--================Blog Area =================-->
+        <section class="blog_area single-post-area py-80px section-margin--small">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <%- include(rootPath + 'elements/bidder/sidebar.ejs')%>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="info-list">
+                            <h4 class="info-list-title">Đánh giá về bạn</h4>
+                            <!-- Search form -->
+                            <div class="mb-4 col-6">
+                                <h4>Điểm: <span class="text-primary"><%= point %></span> </h4>
+                            </div>
+                            
+                            <div class="grid">
+                                
+                                <% response.forEach(item => {%>
+                                    <% 
+                                        let icon;
+                                        if(item.isLike) {
+                                            icon = 'far fa-thumbs-up fa-2x text-success'
+                                        }
+                                        else {
+                                            icon ='far fa-thumbs-down fa-2x text-danger'
+                                        }
+                                    
+                                    %>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="<%= icon %>"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <h5><a href="#"><%=item.seller.userName%></a></h5>
+                                            <p><%=item.comment%></p>
+    
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                <%}) %>
+                                <div class="dropdown-divider"></div>
+                            </div>
+
+                            <nav class="profile-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">
+                                                <span class="fas fa-chevron-left"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">01</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">02</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">03</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">04</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">09</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">
+                                                <span class="fas fa-chevron-right"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+
+    </main>
+
+    <!-- End Main -->
+
+    <%- include(rootPath +  'elements/guest/footer.ejs')%>
+
+    <%- include(rootPath + 'elements/guest/commonJs.ejs')%>
+    <%- include(rootPath + 'elements/bidder/sidebarActive.ejs', {sidebar_active: sidebar_active})%>
+
+</body>
+
+</html>
