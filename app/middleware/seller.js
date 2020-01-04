@@ -1,7 +1,6 @@
-
 module.exports = function(req, res, next) {
-    if(req.isAuthenticated()) {
+    if(req.user.role === 2) {
         return next()
     }
-    res.redirect('/login')
+    res.redirect('/')
 }
