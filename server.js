@@ -58,6 +58,6 @@ app.use('/sellers',sellerRouter);
 // app.use('/bidder', bidderRouter);
 app.use('/', guestRouter);
 
-app.listen(process.env.PORT, () => { 
+app.listen(process.env.PORT||8083, () => { 
     console.log(`Example app listening on port ${process.env.PORT}!`)
 })

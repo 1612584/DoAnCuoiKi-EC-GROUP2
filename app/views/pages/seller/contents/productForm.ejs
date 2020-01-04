@@ -11,7 +11,10 @@
                         <div class="form-group">
                             <label>Tên sản phẩm:<span style="color: red;">(*)</span></label>
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control" 
+                                required oninvalid="this.setCustomValidity('Nhâp tên sản phẩm tại đây')"
+                                oninput="this.setCustomValidity('')"
+                                >
                             </div>
                         </div>
                         <!-- /.form group -->
@@ -39,8 +42,8 @@
 
                                         <div class="btn btn-primary
                                                         btn-sm float-left">
-                                            <input type="file" name="main_img" class="form-control" value="choose"
-                                                accept="image/*">
+                                            <input type="file" name="main_img" class="form-control" value="choose" required oninvalid="this.setCustomValidity('Nhâp ảnh chính sản phẩm tại đây')"
+                                                accept="image/*" oninput="this.setCustomValidity('')">
                                         </div>
 
                                     </div>
@@ -51,8 +54,9 @@
                                     <div class="file-field">
                                         <div class="btn btn-primary
                                                         btn-sm float-left">
-                                            <input type="file" multiple class="form-control" value="choose"
-                                                name="files" accept="image/*">
+                                            <input type="file" id="files" multiple class="form-control" value="choose"
+                                                name="files" accept="image/*" oninvalid="this.setCustomValidity('Nhâp các ảnh khác tại đây')" 
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                     </div>
                                 </div>
@@ -60,10 +64,11 @@
                             </div>
                             <!-- phone mask -->
                             <div class="form-group">
-                                <label>Giá khởi điểm:<span style="color: red;">(*)</span></label>
+                                <label>Giá khởi điểm:<span style="color: red;" >(*)</span></label>
                                 <div class="input-group">
 
-                                    <input pattern="[1-9][0-9]*" name="price_start" type="number" class="form-control">
+                                    <input pattern="[1-9][0-9]*" name="price_start" type="number" class="form-control" required oninvalid="this.setCustomValidity('Nhâp giá khởi điểm tại đây')"
+                                    oninput="this.setCustomValidity('')"> 
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -75,7 +80,7 @@
                                                     red;">(*)</span></label>
                                 <div class="input-group">
 
-                                    <input name="price_step" pattern="[1-9][0-9]*" type="number" class="form-control">
+                                    <input name="price_step" pattern="[1-9][0-9]*" type="number" class="form-control" required oninvalid="this.setCustomValidity('Nhâp bước giá tại đây')" oninput="this.setCustomValidity('')">
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -84,7 +89,8 @@
                             <div class="form-group">
                                 <label>Giá mua ngay: </label>
                                 <div class="input-group">
-                                    <input name="price_now" type="number" class="form-control">
+                                    <input name="price_now" type="number" class="form-control" oninput="this.setCustomValidity('')"
+                                    oninput="this.setCustomValidity('')"    >
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -93,7 +99,7 @@
                                 <label>Gia hạn tự động: </label>
                                 <div class="input-group row">
                                     <div class="col-md-6">
-                                        <input type="radio" name="auto_add" value="true"> <span>Có</span>
+                                        <input type="radio" name="auto_add" checked value="true"> <span>Có</span>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="radio" name="auto_add" value="false"><span>Không</span>
@@ -123,10 +129,11 @@
 
 
                 <!-- /.card -->
+               
+                        
+                    
 
-
-
-
+                
             </form>
         </div>
 
@@ -134,6 +141,7 @@
 
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/ckeditor/ckeditor.js"></script>
+<!-- <script src="/js/ckeditor_helper.js"></script> -->
 <script>
 
     // Replace the <textarea id="editor1"> with an CKEditor
