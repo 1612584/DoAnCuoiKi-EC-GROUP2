@@ -15,7 +15,7 @@ require("./app/configs/passport")(passport);
 const userRouter = require('./app/routes/user')
 const sellerRouter = require("./app/routes/seller/index");
 // const adminRouter = require("./app/routes/admin/index");
-// const bidderRouter = require("./app/routes/bidder");
+const bidderRouter = require("./app/routes/bidder");
 const guestRouter = require('./app/routes/guest');
 
 // use morgan

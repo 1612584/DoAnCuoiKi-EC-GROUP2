@@ -111,6 +111,11 @@ module.exports = {
         
         res.redirect('/');
     },
+    searchProduct: async function (req, res){
+        const products = Product.find();
+        res.render('pages/guest/index',products);
+        //res.json({success: true})
+    },
     getById: async function(req, res){
         const {ID: idProduct} = req.params;
         const product = await Product.findById(idProduct)
