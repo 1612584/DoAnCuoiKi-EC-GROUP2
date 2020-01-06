@@ -21,18 +21,30 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-generator": "^4.16.1",
+    "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
     "moment": "^2.24.0",
+    "mongodb": "^3.4.1",
     "mongoose": "^5.7.11",
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "nodemailer": "^6.3.1",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "randomstring": "^1.1.5",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sequelize": "^5.21.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1612584/DoAnCuoiKi-EC-GROUP2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1612584/DoAnCuoiKi-EC-GROUP2/issues"
+  },
+  "homepage": "https://github.com/1612584/DoAnCuoiKi-EC-GROUP2#readme"
 }

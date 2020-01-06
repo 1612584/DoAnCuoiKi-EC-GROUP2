@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./elements/header') %>
+    
+    <style type="text/css">
+        body {
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+
+        .emp-profile {
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+
+        .profile-img {
+            text-align: center;
+        }
+
+        .profile-img img {
+            width: 70%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+        .profile-head h5 {
+            color: #333;
+        }
+
+        .profile-head h6 {
+            color: #0062cc;
+        }
+
+        .profile-edit-btn {
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .proile-rating {
+            font-size: 12px;
+            color: #818182;
+            margin-top: 5%;
+        }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .profile-head .nav-tabs {
+            margin-bottom: 5%;
+        }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+        .profile-head .nav-tabs .nav-link.active {
+            border: none;
+            border-bottom: 2px solid #0062cc;
+        }
+
+        .profile-work {
+            padding: 14%;
+            margin-top: -15%;
+        }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+        .profile-tab label {
+            font-weight: 600;
+        }
+
+        .profile-tab p {
+            font-weight: 600;
+            color: #0062cc;
+        }
+
+        .login-form {
+            width: 385px;
+            margin: 30px auto;
+            background: #F7F7F7;
+            color: black;
+        }
+
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .login-form h2 {
+            margin: 0 0 15px;
+            color: black;
+        }
+
+        .form-control,
+        .login-btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .input-group-addon .fa {
+            font-size: 18px;
+        }
+
+        .login-btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .social-btn .btn {
+            border: none;
+            margin: 10px 3px 0;
+            opacity: 1;
+        }
+
+        .social-btn .btn:hover {
+            opacity: 0.9;
+        }
+
+        .social-btn .btn-primary {
+            background: #507cc0;
+        }
+
+        .social-btn .btn-info {
+            background: #64ccf1;
+        }
+
+        .social-btn .btn-danger {
+            background: #df4930;
+        }
+
+        .or-seperator {
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        .or-seperator i {
+            padding: 0 10px;
+            background: #f7f7f7;
+            position: relative;
+            top: -11px;
+            z-index: 1;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <%- include('./elements/navbar') %>
+        <%- include('./elements/sidebar') %>
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <h3 class="card-title">Danh sách sản phẩm</h3>
+
+                                        <form class="form-inline col-md-6 " id="form" action="#" method="get">
+
+                                            <div class="input-group input-group-sm">
+
+                                                <select
+                                                    class="form-control filter browser-default custom-select custom-select-lg mb-3"
+                                                    name="type">
+                                                    <option disabled selected value> -- Chọn -- </option>
+                                                    <option value="true">Đang đăng và còn hạn</option>
+                                                    <option value="false">Đã kết thúc</option>
+
+                                                </select>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+
+                                        <table id="spTable" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Thời gian kết thúc</th>
+                                                    <th>Người thắng</th>
+                                                    <th>Thao tác</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%for(i=0;i<products.length;i++){
+                                            let name = "";
+                                            try{
+                                               name = winners[i].user.fullName;
+                                            }
+                                            catch(err){
+                                                name = ""
+                                            }%>
+
+                                                <tr>
+                                                    <td><%= products[i]._id %></td>
+                                                    <td><%= products[i].name %></td>
+                                                    <td><%= products[i].timeEnd %></td>
+                                                    <td><%= name%></td>
+                                                    <td>
+                                                        <a href="/sellers/products/<%=products[i]._id%>">Chi tiết</a>
+                                                        <a href="/sellers/products/<%=products[i]._id%>/cancel">Hủy giao
+                                                            dịch</a>
+                                                    </td>
+                                                </tr>
+
+                                                <%} %>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- <div class="modal fade" id="modalLoginForm tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center"> <h4 class="modal-title w-100 font-weight-bold">Đánh giá người thắng </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="/sellers/products/" >
+            <div class="md-form mb-5">
+          
+                <div class="form-group">
+                    <label>Cho điểm: </label>
+                    <div class="input-group row">
+                        <div class="col-md-6">
+                            <i class="fa fa-thumbs-up"></i>
+                            <input type="radio" name="like" value="true">
+                        </div>
+                        <div class="col-md-6">
+                            <i class="fa fa-thumbs-down"></i>
+                            <input type="radio" name="like" value="false" >                   
+                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nhận xét: </label>
+                    <div class="input-group row">
+                       <input class="form-control validate" name="comment">
+                    </div>
+                </div>            
+         
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-default" id="#rating" data-dismiss="modal">Xác nhận</button>
+          </div>   
+        </form>
+       
+    </div>
+  </div>
+</div>
+</div> -->
+            </section>
+        </div>
+        <%- include('./elements/footer') %>
+        <script src="/plugins/jquery/jquery.min.js"></script>
+        <%- include('./elements/script') %>
+        <script>
+            $().ready(() => {
+
+                $('.filter').on('change', async (eventFilter) => {
+                    $('table tbody').empty();
+
+                    console.log('filter event');
+                    const filter = $(eventFilter.target).closest('select').val();
+                    const apiStr = 'http://' + location.host + `/sellers/products/getList/filter?active=${filter}`;
+                    console.log(apiStr);
+                    fetch(apiStr)
+                        .then(res => res.json())
+                        .then(data => {
+                            //csonsole.log(products)
+                            let products = data.products;
+                       
+                            let winners;
+                            if (data.winners != undefined) {
+                                winners = data.winners;
+                                //da ket thuc
+                                for (i = 0; i < products.length; i++) {
+                                    console.log(products[i])
+                                    console.log(winners[i]);
+                                    let name = winners[i].user.fullName || "";
+                                    let timeEnd = ""
+                                    console.log(products[i].timeEnd);
+                                    var currentDate = new Date();
+
+                                    $('table tbody').append(`
+                                        <tr>
+                                        <td>${products[i]._id}</td>
+                                        <td>${products[i].name}</td>
+                                        <td>${products[i].timeEnd}</td>
+                   
+                                        <td>${name}<button id="Comment" class="btn btn-default btn-rounded ml-2" data-toggle="modal" data-id=${products[i]._id} data-target="#EditProfile"><span>Like</span></button>
+                                            <button class="btn btn-default btn-rounded ml-2" data-toggle="modal" data-productid=${products[i]._id} data-target="#modalLoginForm"><span>Dislike</span></button>
+                                            </td>
+                                        <td><a href="/sellers/products/${products[i]._id}">Chi tiết</a></td>
+                                            </tr>
+                                    `)
+                                }
+                            } else {
+                                for (i = 0; i < products.length; i++) {
+                                    console.log(products[i])
+                                    let timeEnd = ""
+                                    if (products[i].timeEnd === undefined) {
+                                        timeEnd = products[i].timeEnd;
+                                    }
+                                    $('table tbody').append(`
+               <tr>
+                   <td>${products[i]._id}</td>
+                   <td>${products[i].name}</td>
+                   <td>${products[i].timeEnd}</td>
+                   
+                   <td></td>
+                   <td><a href="/sellers/products/${products[i]._id}">Chi tiết</a></td>
+               </tr>
+           `)
+                                }
+                            }
+
+                        }
+                        ).catch(err => console.log(err));
+
+                });
+                $('.table').on('click', 'button', (event) => {
+                    // const id = event.target.
+                    getModal()
+                });
+            });
+
+            $('Comment').on('click',function(){
+                var ID=$(this).data('id');
+                $('.')
+            })
+
+
+
+            
+               
+
+        </script>
+        <!-- <script src='/js/seller_products.js'> </script> -->
+
+        <div id="EditProfile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="login-form modal-content">
+                    <form id="formLogin" action="/login" method="POST" action="/sellers/comment/">
+                        <h2 class="text-center">Đánh giá người thắng</h2>
+                        
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" style="height: 200px;" class="form-control input-lg" name="username" placeholder="Nhập đánh giá">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit"  class="btn btn-primary login-btn btn-block">Gửi đánh giá</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+
+
+</body>
+
+</html>

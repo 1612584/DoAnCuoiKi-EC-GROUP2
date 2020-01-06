@@ -12,6 +12,17 @@
     <%- include('./elements/navbar') %>
     <%- include('./elements/sidebar') %>
     <div class="content-wrapper">
+      <% if(message.length !== 0) {%>
+        <% console.log(message) %>
+        <div class="container notication_alert">
+            <div class="alert alert-success my-3" role="alert">
+                <%= message%>
+            </div>
+        </div>
+    <%}else {%>
+        <%= null%>
+    <%}%>
+    
       <%- include('./contents/productForm') %>
 
     </div>
