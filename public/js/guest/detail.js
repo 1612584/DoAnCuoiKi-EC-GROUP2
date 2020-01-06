@@ -76,3 +76,65 @@ priceNext.on('click', function(e) {
         priceInput.val(`${currPrice} vnđ`)
     }
 })
+
+pricePrev.on('click', function(e) {
+    let currPrice = converToNumber(priceInput.val());
+
+    currPrice = converToNumber(priceInput.val())  - priceStep;
+    if(currPrice <= priceStart) {
+        priceInput.val(`${priceStart} vnđ`)
+    }
+    else {
+        priceInput.val(`${currPrice} vnđ`)
+    }
+})
+
+favoriteBtn.on('click', async function(e) {
+    let res = await addFavorite(idProduct)
+    let { success, message, error } = res
+    if(success) {
+        alertSuccessElement.toggleClass('hidden')
+        alertSuccessElement.append(message)
+        window.scrollTo(0, 0)
+        setTimeout(() => {
+            alertSuccessElement.toggleClass('hidden')
+            alertSuccessElement.empty()
+        }, 5000)
+    }
+    else {
+        alertDangerElement.toggleClass('hidden')
+        alertDangerElement.append(error)
+        window.scrollTo(0, 0)
+        setTimeout(() => {
+            alertDangerElement.toggleClass('hidden')
+            alertDangerElement.empty()
+        }, 5000)
+    }
+})
+
+function converToNumber(string) {
+    let stringSliced = string.slice(0, -3);
+    let stringTrimed = stringSliced.replace(/ +/g, "");
+    let number = Number.parseInt(stringTrimed);
+    return number
+}
+
+async function bid(idProduct, price) {
+    let response = await fetch(`/bidder/api/bid/${idProduct}?price=${price}`)
+    let responseJson = response.json();
+    return responseJson;
+}
+
+async function addFavorite(idProduct, price) {
+    let response = await fetch(`/bidder/api/add_to_favorite/${idProduct}`)
+    let responseJson = response.json();
+    return responseJson;
+}
+
+
+// onclick="
+//                                         var result = document.getElementById('bidPrice'); 
+//                                         var sst = result.value; 
+//                                         if( !isNaN( sst )) result.value=parseInt(result.value) - parseInt(priceDiff);
+//                                         return false;
+//                                     "
