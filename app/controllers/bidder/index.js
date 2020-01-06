@@ -9,6 +9,8 @@ moment.locale('vi-VN');
 const { bidSuccess, bidOver, sellerHaveBidder } = require('../../misc/content_mail')
 
 module.exports = {
+
+    //api all
     apiRequestToSeller: async (req, res) => {
         const bidder = await Bidder.findOne({user: req.user._id})
         const requestBidder = await BidderRequest.findOne({bidder: bidder._id})

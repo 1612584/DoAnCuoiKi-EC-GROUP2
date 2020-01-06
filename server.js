@@ -15,7 +15,7 @@ require("./app/configs/passport")(passport);
 const userRouter = require('./app/routes/user')
 const sellerRouter = require("./app/routes/seller/index");
 // const adminRouter = require("./app/routes/admin/index");
-// const bidderRouter = require("./app/routes/bidder");
+const bidderRouter = require("./app/routes/bidder");
 const guestRouter = require('./app/routes/guest');
 
 // use morgan
@@ -55,7 +55,7 @@ mongoose.set('useFindAndModify', false);
 app.use('/user', userRouter)
 app.use('/sellers',sellerRouter);
 // app.use('/admin', adminRouter);
-// app.use('/bidder', bidderRouter);
+ app.use('/bidder', bidderRouter);
 app.use('/', guestRouter);
 
 app.listen(process.env.PORT||8083, () => { 
