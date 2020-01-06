@@ -55,7 +55,7 @@ mongoose.set('useFindAndModify', false);
 app.use('/user', userRouter)
 app.use('/sellers',sellerRouter);
 // app.use('/admin', adminRouter);
-// app.use('/bidder', bidderRouter);
+ app.use('/bidder', bidderRouter);
 app.use('/', guestRouter);
 
 app.listen(process.env.PORT||8083, () => { 

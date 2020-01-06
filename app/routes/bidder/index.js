@@ -16,6 +16,8 @@ router.get('/api/response', bidderController.apiGetResponse)
 router.get('/api/bidding_products', bidderController.apiGetBiddingProducts)
 router.get('/api/win_products', bidderController.apiGetWinProducts)
 router.get('/api/request_to_seller', bidderController.apiRequestToSeller)
+   
+
 
 router.use('/profile', profileRouter)
 
