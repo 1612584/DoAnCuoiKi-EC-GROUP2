@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./elements/header') %>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <%- include('./elements/navbar') %>
+        <%- include('./elements/sidebar') %>
+
+         <div class="content-wrapper p-3 " >
+            <div class="card">
+                    <d class="wrapper row">
+                        <div class="preview col-md-6">
+                            
+                            <div class="preview-pic tab-content">
+                              <div class="tab-pane active" id="pic-1"><img src="<%=product.images.main%>" width="100%" /></div>
+                              <div class="tab-pane" id="pic-2"><img src="" /></div>
+                            </div>
+
+
+                            <div>
+                            <h1>Danh sách người đã đấu giá</h1>
+                            <table class="table table-bordered mt-3 ">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Giá đã đặt</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0;i<product.bidders.length;i++) { %>
+                                    <% if(product.bidders[i].isWaitingSeller==false){%>
+                                  <tr>
+                                    <th scope="row"><%=i+1%></th>
+                                    <td><%=product.bidders[i].bidder.user.fullName%></td> 
+                                    <td><%=product.bidders[i].price%></td>
+                                    <td><a class="button danger-btn"  href="/sellers/<%=product._id%>/ban/<%=product.bidders[i].bidder._id%>"> Cấm
+                                    </a></td>
+                                    <!-- <td><button type="button" class="btn btn-danger" href="/sellers/<%=product._id%>/ban/<%=product.bidders[i].bidder%>">Cấm</button> -->
+                                  </tr>
+                                  <%}%>
+                                  <%}%>
+                                </tbody>
+                              </table>
+                            </div>
+                            
+                        </div>
+                        <div class="details col-md-6">
+                            <h1 class="product-title"><%= product.name %></h1>
+                            <p style="font-size: 40px ;">Mô tả</p>
+                            <p class="product-description"><%- product.fullDes%></p>
+                            <form method="POST" >
+                                <textarea class="form-control" name="description"  rows="5" id="description"></textarea>
+                                <div class="pt-3 pb-3">
+                                <button  type="submit" onclick="addDescription('<%=product.fullDes%>')"
+                                    class="btn btn-primary">Bổ sung mô tả</button>
+                                </div>  
+                            </form>             
+                    </div>
+                
+            </div>
+        </div> 
+    </div>
+
+        <%- include('./elements/footer') %>
+        <%- include('./elements/script') %>
+
+
+        <script>
+
+            function addDescription(description) {
+                var date = new Date;
+                today = formatDate(date);
+                let TextboxValue = document.getElementById("description").value;
+                var Newdescription = description + '\n' + today + '\n' + TextboxValue;
+            }
+
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [day, month, year].join('-');
+            }
+
+        </script>
+
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/ckeditor/ckeditor.js"></script>
+<script>
+
+    // Replace the <textarea id="editor1"> with an CKEditor
+    // instance, using default configurations.
+    CKEDITOR.replace('description', {
+        uiColor: '#14B8C4',
+        toolbar: null,
+        toolbarGroups: [
+            { name: 'document', groups: ['mode', 'document'] },			// Displays document group with its two subgroups.
+            { name: 'clipboard', groups: ['clipboard', 'undo'] },			// Group's name will be used to create voice label.
+            '/',																// Line break - next group will be placed in new line.
+            { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+            { name: 'links' }
+        ]
+    });
+
+</script>
+
+</body>
+
+</html>
