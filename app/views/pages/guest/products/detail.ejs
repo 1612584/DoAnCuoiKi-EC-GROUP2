@@ -11,7 +11,7 @@
     
     <% 
     let { 
-        name, images, priceCurrent, priceNow, priceStart, priceStep, seller, fullDes, bidders 
+        name, images, priceCurrent, priceNow, priceStart, priceStep, seller, fullDes, bidders, timeEnd 
     } = product;
     bidders = bidders.reverse();
     let bidderWinCurr = bidders[0] || {bidder: {user: {fullName: 'Chưa có'}}}
@@ -88,8 +88,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <span>Thời gian còn lại</span>
-                            <h3 class="text-danger">00:01:59</h3>
+                            <span>Thời gian đến hạn</span>
+                           
+                            <h3 class="text-warning">
+                                <%=moment(timeEnd).format("hh:mm, dddd, Do MMMM YYYY")%> 
+                            </h3>
+                            <span>Tình trạng:</span>
+                           
+                            <h3 class="text-danger">
+                               <% if( timeEnd <= new Date()){%>
+                                <%= "Đã hết hạn" %>
+                                <%}else {%>
+                                    <%= "Còn hạn"%>
+                                <%}%>
+                            </h3>
+
                             <script>
                                 // Bước giá
                                 var priceDiff = 100;
