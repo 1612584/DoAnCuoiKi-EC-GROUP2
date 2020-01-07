@@ -84,6 +84,8 @@ module.exports = {
         const verifyAccExpires = Date.now() + 3600000;
         const user = new User({fullName, userName, email, password, verifyAccExpires, verifyAccToken})
         const newUser = await user.save()
+        console.log(user);
+        //
         const contentEmail = `
             <div style="display: flex;
                         justify-content: center;
