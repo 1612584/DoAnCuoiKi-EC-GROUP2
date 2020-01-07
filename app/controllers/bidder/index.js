@@ -30,7 +30,16 @@ module.exports = {
     apiAddToFavorite: async (req, res) => {
         const idProduct = req.params.idProduct;
         const bidder = await Bidder.findOne({user: req.user._id})
-        if(!bidder) return res.json({success: false, error: 'Không tìm được bidder này trong hệ thống'})
+        if(!bidder) 
+        {
+            let newBidder = new Bidder({
+                user: mongoose.Types.ObjectId(req.user._id),
+            });
+            bidder = newBidder.save((err,doc)=>{
+               
+            })
+            console.log(bidder);
+        }
         let isHas = false;
         bidder.favoriteList.forEach(item => {
             if(item.product.toString() === idProduct.toString()) {
