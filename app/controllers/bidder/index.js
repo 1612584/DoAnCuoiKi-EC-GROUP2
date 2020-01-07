@@ -70,98 +70,106 @@ module.exports = {
         res.json({success: true, favoriteList})
     },
     apiBid: async (req, res) => {
+        
         const idProduct = req.params.id;
         const price = req.query.price;
+        
         if(!price) {
             return res.json({success: false, error: 'Chưa truyền giá mua'})
         }
         const product = await Product.findById(idProduct).populate({
             path: 'bidders.bidder'
         })
-        const bidder = await Bidder.findOne({user: req.user._id}).populate('user');
-        // Xử lí giá truyền vào
-        if(price <= product.priceCurrent) 
-            return res.json({success: false, error: 'Giá của bạn thấp hơn hoặc bằng giá đấu hiện tại. Vui lòng nhập lại.'})
-        // Xử lí điểm đánh giá
-        const { like, dislike } = bidder;
-        const point = like / (like+dislike);
-        if(point < 0.8) return res.json({success: false, error: 'Điểm đánh giá thấp hơn 80%. Không được đấu giá.'})
-        
-        
-        let isWaiting = false;
-        product.bidders.forEach(item => {
-            if(item.bidder.toString() == bidder._id.toString()) {
-                isWaiting = item.isWaitingSeller;
+        if(product.isEdnd == true || product.timeEnd <= new Date()){
+            res.json({success:false,error:"Sản phẩm đã hết hạn đấu giá"})
+        }
+        else {
+            const bidder = await Bidder.findOne({user: req.user._id}).populate('user');
+            // Xử lí giá truyền vào
+            if(price <= product.priceCurrent) 
+                return res.json({success: false, error: 'Giá của bạn thấp hơn hoặc bằng giá đấu hiện tại. Vui lòng nhập lại.'})
+            // Xử lí điểm đánh giá
+            const { like, dislike } = bidder;
+            const point = like / (like+dislike);
+            if(point < 0.8) return res.json({success: false, error: 'Điểm đánh giá thấp hơn 80%. Không được đấu giá.'})
+            
+            
+            let isWaiting = false;
+            product.bidders.forEach(item => {
+                if(item.bidder.toString() == bidder._id.toString()) {
+                    isWaiting = item.isWaitingSeller;
+                }
+            })
+    
+            // bị ban
+            if(isWaiting) return res.json({success: false, error: 'Bạn đã bị cấm đấu giá sản phẩm này'})
+            let updatedProduct;
+    
+            let update = (point) ? { 
+                                        $push: { bidders: {
+                                            bidder: bidder._id,
+                                            price: price,
+                                            date: Date.now(),
+                                        }},
+                                        priceCurrent: price
+                                    } : 
+                                    {   
+                                        $push: { bidders: {
+                                            bidder: bidder._id,
+                                            price: price,
+                                            date: Date.now(),
+                                            isWaitingSeller: false,
+                                        }},
+                                        priceCurrent: price
+                                    };
+            updatedProduct = await Product
+            .findOneAndUpdate({_id: idProduct}, update, {new: true})
+            .populate({
+                        path: 'bidders.bidder',
+                        model: 'Bidder',
+                        populate: {
+                            path: 'user',
+                            model: 'User'
+                        }
+            })
+            .populate('seller')
+            .exec();
+            // gửi mail thông báo
+    
+            let objRes = {
+                updatedProduct,
+                success: true,
+                message: 'Đấu giá thành công'
             }
-        })
-
-        // bị ban
-        if(isWaiting) return res.json({success: false, error: 'Bạn đã bị cấm đấu giá sản phẩm này'})
-        let updatedProduct;
-
-        let update = (point) ? { 
-                                    $push: { bidders: {
-                                        bidder: bidder._id,
-                                        price: price,
-                                        date: Date.now(),
-                                    }},
-                                    priceCurrent: price
-                                } : 
-                                {   
-                                    $push: { bidders: {
-                                        bidder: bidder._id,
-                                        price: price,
-                                        date: Date.now(),
-                                        isWaitingSeller: false,
-                                    }},
-                                    priceCurrent: price
-                                };
-        updatedProduct = await Product
-        .findOneAndUpdate({_id: idProduct}, update, {new: true})
-        .populate({
-                    path: 'bidders.bidder',
-                    model: 'Bidder',
-                    populate: {
-                        path: 'user',
-                        model: 'User'
-                    }
-        })
-        .populate('seller')
-        .exec();
-        // gửi mail thông báo
-
-        let objRes = {
-            updatedProduct,
-            success: true,
-            message: 'Đấu giá thành công'
+            // mail cho bidder
+            if(!bidder.user.email) {
+                objRes = {...objRes, message: 'Đấu giá thành công nhưng không thể gửi mail thông báo. Tài khoản chưa có email (do login bằng fb)', }
+            }
+            else {
+                await mailer.sendMail(bidder.user.email, bidSuccess(`http://localhost:3006/product/detail/${idProduct}`))
+            }
+            
+            let bidderMaxCur = updatedProduct.bidders.sort((a, b) => a.price > b.price)[updatedProduct.bidders.length -2]
+            if(bidderMaxCur) {
+                if(bidderMaxCur.bidder.user.email !== bidder.user.email) {
+                    await mailer.sendMail(bidderMaxCur.bidder.user.email, bidOver(`http://localhost:3006/product/detail/${idProduct}`))
+                } 
+            }
+    
+            if(!updatedProduct.seller.email) {
+                // xử lý seller là tài khoản fb không có email
+                // objRes = {
+                //     updatedProduct,
+                //     success: true,
+                //     message: 'Đấu giá thành công'
+                // }
+            }
+            else {
+                await mailer.sendMail(updatedProduct.seller.email, sellerHaveBidder(`http://localhost:3006/product/detail/${idProduct}`))
+            }
+            res.json(objRes)
         }
-        // mail cho bidder
-        if(!bidder.user.email) {
-            objRes = {...objRes, message: 'Đấu giá thành công nhưng không thể gửi mail thông báo. Tài khoản chưa có email (do login bằng fb)', }
-        }
-        else {
-            await mailer.sendMail(bidder.user.email, bidSuccess(`http://localhost:3006/product/detail/${idProduct}`))
-        }
-        
-        let bidderMaxCur = updatedProduct.bidders.sort((a, b) => a.price > b.price)[updatedProduct.bidders.length -2]
-        if(bidderMaxCur) {
-            if(bidderMaxCur.bidder.user.email !== bidder.user.email) {
-                await mailer.sendMail(bidderMaxCur.bidder.user.email, bidOver(`http://localhost:3006/product/detail/${idProduct}`))
-            } 
-        }
-
-        if(!updatedProduct.seller.email) {
-            // xử lý seller là tài khoản fb không có email
-            // objRes = {
-            //     updatedProduct,
-            //     success: true,
-            //     message: 'Đấu giá thành công'
-            // }
-        }
-        else {
-            await mailer.sendMail(updatedProduct.seller.email, sellerHaveBidder(`http://localhost:3006/product/detail/${idProduct}`))
-        }
-        res.json(objRes)
+       
     },
     apiGetBidders: async (req, res) => {
         const id = req.params.id;
