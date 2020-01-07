@@ -67,6 +67,10 @@ const productSchema = new Schema({
     timeEnd : {
         type: Date
     },
+    isEnd:{
+        type: Boolean,
+        default: false
+    },
     isAutoAdd : {
         type: Boolean
     }
