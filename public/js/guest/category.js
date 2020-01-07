@@ -109,7 +109,7 @@ $(window).on('load', function() {
 
   async function addFavorite(idProduct) {
     
-    let response = await fetch(`http://localhost:3006/bidder/api/add_to_favorite/${idProduct}`)
+    let response = await fetch(`/bidder/api/add_to_favorite/${idProduct}`)
     let responseJson = response.json();
     return responseJson;
   }

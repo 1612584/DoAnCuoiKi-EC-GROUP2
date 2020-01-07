@@ -1,7 +1,7 @@
 node_modules
 build
 npm-debug.log
-.ev
+
 .DS_Store
 configs/config.js
 /public/uploads

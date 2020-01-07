@@ -9,14 +9,14 @@ $(window).on("load", async function () {
 
 async function getUser(id) {
     
-    let response = await fetch(`http://localhost:3006/admin/users/api/get_user?id=${id}`);
+    let response = await fetch(`/admin/users/api/get_user?id=${id}`);
     let {user} = await response.json();
     return user
 }
 
 async function deleteUser(id) {
     
-    let response = await fetch(`http://localhost:3006/admin/users/api/delete_user?id=${id}`);
+    let response = await fetch(`/admin/users/api/delete_user?id=${id}`);
     let status = await response.json();
     return status
 }

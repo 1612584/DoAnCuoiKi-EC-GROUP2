@@ -4,7 +4,7 @@ const request = require('request')
 const randomstring  = require('randomstring')
 const mailer = require('../../../misc/mailer')
 const { Category } = require('../../../models/category');
-
+const host = process.env.host;
 function requestCaptcha(url) {
     return new Promise((resolve, reject) => {
         request(url, (error, response, body) => {
@@ -103,7 +103,7 @@ module.exports = {
                     Xác nhận tài khoản bằng cách click vào link bên dưới:
                     <br/>
                     Link xác nhận:
-                    <a href="http://localhost:3006/user/verify/${verifyAccToken}">Xác nhận tài khoản<a/>
+                    <a href="${host}/user/verify/${verifyAccToken}">Xác nhận tài khoản<a/>
                     <br/><br/>
                     Good bye !!
                 </div>

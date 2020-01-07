@@ -98,45 +98,11 @@ const { url: main } = await cloudinary.uploader.upload(mainArr[0].path).catch(er
         const sellerId = req.user._id || "5e06daa1ca65b90bb86fce1d";
         const seller = mongoose.Types.ObjectId(sellerId);
         console.log(`sellerId = ${req.user_id} Object ${seller}`)
-        const products = await Product.find({
-            seller: seller
-        })
-        .populate({
-            path: 'winner.info',
-            model: 'Bidder'
-        })
-        .then(async(products) => {
-            // console.log(products),
-            let winners = [];
-            for(product of products){
-                 if(product.winner.info!=undefined){
-                    let bidder =await Bidder.findOne({
-                        _id: product.winner.info._id
-                    }).populate('user');
-                    product.winnerInfo = bidder;
-                    winners.push(bidder)
-                 console.log(product.winnerInfo)
-                 console.log('time end' + product.timeEnd);
-                 }
-                 
-                // console.log(bidder.user)
-                // let user = await User.findOne({_id:product.winner.info.user});
-                // if(user != undefined){
-                //     console.log(product._id)
-                //     console.log(user.fullname);
-                // }
-               
-            }
-            const context = {
-                products: [],
-                winners: []
-            }
-            res.render('pages/seller/productList',context);
-        })
-        .catch(err => {
-            throw (err);
-            
-        })
+        const context = {
+            products: [],
+            winners: []
+        }
+        res.render('pages/seller/productList',context);
         // res.json(products);
         // res.render('pages/seller/productList', { products: products });
     },

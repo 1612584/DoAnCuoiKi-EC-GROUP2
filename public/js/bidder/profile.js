@@ -82,7 +82,7 @@ formPass.on('submit', async function(e) {
 })
 
 async function changeName(fullName) {
-    let res = await fetch(`http://localhost:3006/user/api/change_name`, {
+    let res = await fetch(`/user/api/change_name`, {
         method: 'POST',
         headers:{
             'Accept': 'application/json, text/plain, */*',
@@ -98,7 +98,7 @@ async function changeName(fullName) {
 }
 
 async function changeEmail(email) {
-    let res = await fetch(`http://localhost:3006/user/api/change_email`, {
+    let res = await fetch(`/user/api/change_email`, {
         method: 'POST',
         headers:{
             'Accept': 'application/json, text/plain, */*',
@@ -115,7 +115,7 @@ async function changeEmail(email) {
 
 
 async function changePass(password, old_password) {
-    let res = await fetch(`http://localhost:3006/user/changepassword`, {
+    let res = await fetch(`/user/changepassword`, {
         method: 'POST',
         headers:{
             'Accept': 'application/json, text/plain, */*',

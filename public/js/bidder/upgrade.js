@@ -28,7 +28,7 @@ $('#upgrade').on('click', async function(e) {
 
 
 async function upgrade(idProduct, price) {
-    let response = await fetch(`http://localhost:3006/bidder/api/request_to_seller`)
+    let response = await fetch(`/bidder/api/request_to_seller`)
     let responseJson = response.json();
     return responseJson;
 }

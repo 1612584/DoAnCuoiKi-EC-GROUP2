@@ -5,7 +5,7 @@ $(window).on("load", async function () {
 
 async function getProduct(id) {
 
-    let response = await fetch(`http://localhost:3006/admin/products/${id}`);
+    let response = await fetch(`/admin/products/${id}`);
     //console.log(response)
     if(response.status==500)return null;
     else{
