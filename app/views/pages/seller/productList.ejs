@@ -334,7 +334,7 @@
 
                     console.log('filter event');
                     const filter = $(eventFilter.target).closest('select').val();
-                    const apiStr = 'http://' + location.host + `/sellers/products/getList/filter?active=${filter}`;
+                    const apiStr = `/sellers/products/getList/filter?active=${filter}`;
                     console.log(apiStr);
                     fetch(apiStr)
                         .then(res => res.json())
