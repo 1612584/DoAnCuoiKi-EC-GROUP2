@@ -255,7 +255,7 @@
                                                 <tr>
                                                     <td><%= products[i]._id %></td>
                                                     <td><%= products[i].name %></td>
-                                                    <td><%= products[i].timeEnd %></td>
+                                                    <td><%= moment(products[i].timeEnd) %></td>
                                                     <td><%= name%></td>
                                                     <td>
                                                         <a href="/sellers/products/<%=products[i]._id%>">Chi tiết</a>
@@ -358,7 +358,7 @@
                                         <tr>
                                         <td>${products[i]._id}</td>
                                         <td>${products[i].name}</td>
-                                        <td>${products[i].timeEnd}</td>
+                                        <td>${moment(products[i].timeEnd).format("hh:mm, dddd, Do MMMM YYYY") }</td>
                    
                                         <td>${name}<button id="Comment" class="btn btn-default btn-rounded ml-2" data-toggle="modal" data-id=${products[i]._id} data-target="#EditProfile"><span>Like</span></button>
                                             <button class="btn btn-default btn-rounded ml-2" data-toggle="modal" data-productid=${products[i]._id} data-target="#modalLoginForm"><span>Dislike</span></button>
@@ -378,7 +378,7 @@
                <tr>
                    <td>${products[i]._id}</td>
                    <td>${products[i].name}</td>
-                   <td>${products[i].timeEnd}</td>
+                   <td>${moment(products[i].timeEnd).format("hh:mm, DD/MM/YYYY") }</td>
                    
                    <td></td>
                    <td><a href="/sellers/products/${products[i]._id}">Chi tiết</a></td>

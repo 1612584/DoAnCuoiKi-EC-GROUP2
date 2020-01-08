@@ -10,7 +10,8 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
-
+const moment = require('moment')
+moment.locale('vi-VN');
 module.exports = {
     get: async (req, res) => {
         const categories = await Category.find();
@@ -163,7 +164,8 @@ const { url: main } = await cloudinary.uploader.upload(mainArr[0].path).catch(er
                     }
                     const context = {
                         products: products,
-                        winners: winners
+                        winners: winners,
+                        moment
                     }
                     res.json(context);
                 })
